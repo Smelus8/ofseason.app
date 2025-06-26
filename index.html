@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Offseason App</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="icon.png" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8d5ba, #7aa7c7);
+            margin: 0;
+            color: #2c3e50;
+        }
+        header {
+            background-color: #5f9ea0;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #8ecae6;
+            box-shadow: inset 0 -2px 0 #219ebc;
+        }
+        nav button {
+            background: transparent;
+            border: none;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #023047;
+            transition: background-color 0.3s ease;
+        }
+        nav button:hover,
+        nav button.active {
+            background-color: #219ebc;
+            color: white;
+            border-radius: 5px 5px 0 0;
+        }
+        main {
+            padding: 1rem 2rem;
+            background: white;
+            margin: 1rem auto;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+        }
+        section {
+            display: none;
+        }
+        section.active {
+            display: block;
+        }
+        h2 {
+            color: #023047;
+            margin-top: 0;
+        }
+        ul {
+            padding-left: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>Offseason App</header>
+    <nav>
+        <button class="active" data-target="training">Trening</button>
+        <button data-target="nutrition">Żywienie</button>
+        <button data-target="mobility">Mobilność</button>
+    </nav>
+    <main>
+        <section id="training" class="active">
+            <h2>Plan treningowy na 3 tygodnie off-season</h2>
+            <ul>
+                <li><strong>Poniedziałek:</strong> Wytrzymałość i szybkość (interwały biegowe, sprinty)</li>
+                <li><strong>Wtorek:</strong> Siła domowa z gumami (przysiady, wykroki, pompki, ćwiczenia na plecy)</li>
+                <li><strong>Środa:</strong> Odpoczynek lub lekka mobilność (stretching, foam rolling)</li>
+                <li><strong>Czwartek:</strong> Przyspieszenie i technika (starty z miejsca, zmiany kierunku, drybling)</li>
+                <li><strong>Piątek:</strong> Trening siły i strzału (ćwiczenia z gumami, ćwiczenia na core)</li>
+                <li><strong>Sobota:</strong> Mobilność i regeneracja</li>
+                <li><strong>Niedziela:</strong> Odpoczynek lub spacer</li>
+            </ul>
+        </section>
+        <section id="nutrition">
+            <h2>Plan żywieniowy</h2>
+            <ul>
+                <li>Śniadanie: szybkie, np. owsianka z owocami lub kanapki z kurczakiem</li>
+                <li>Drugie śniadanie/przekąska: jogurt naturalny, orzechy</li>
+                <li>Obiad: kurczak, warzywa, ryż/ziemniaki</li>
+                <li>Podwieczorek: owoc lub warzywa</li>
+                <li>Kolacja: sałatka z kurczakiem lub jajka</li>
+                <li>Unikaj słodyczy, pij dużo wody</li>
+            </ul>
+        </section>
+        <section id="mobility">
+            <h2>Mobilność i rozciąganie</h2>
+            <ul>
+                <li>Codziennie: 10-15 minut rozciągania dynamicznego i statycznego</li>
+                <li>Skup się na biodrach, udach i plecach</li>
+                <li>Dodaj ćwiczenia oddechowe i relaksacyjne</li>
+            </ul>
+        </section>
+    </main>
+    <script>
+        const buttons = document.querySelectorAll('nav button');
+        const sections = document.querySelectorAll('main section');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const target = btn.getAttribute('data-target');
+                sections.forEach(sec => {
+                    if(sec.id === target){
+                        sec.classList.add('active');
+                    } else {
+                        sec.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
